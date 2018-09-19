@@ -12,6 +12,12 @@ class App extends Component {
     }
   }
   componentDidMount(){
+    fetch("/Hello/Tyler")//retrieves information from this url
+    .then((res)=>{return res.text()})//transforms it to text, well be using json so that .text() becomes .json()
+    .then(text=>this.setState({temp:text}))//set temp to the new text
+    .then(console.log(this.state.temp));
+    
+    
     //stub method, this gets call after the component is finished we will use this for RESTful calls
   }
   //increate size of state variable by x
@@ -38,6 +44,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <p>{this.state.temp}</p>
         <font>{this.state.size/*using variable within html*/}</font>
         <div className="buttons">
           {this.state.size>0?<input type="button" id="increase" onClick={()=>this.decrease(this.state.size)} value="0"/>:null /*Example of Condition statement within html*/}
@@ -48,7 +55,7 @@ class App extends Component {
         </div>
         <p style={myStyle}/*the style dictionary has been used here to set the size of this element to the state variable size*/>Hello World{exclamations/*we used the variable we create earlier to be an annoying as possible*/}</p>
         {l.map(function(fruit,i){/*here is how we do a for loop within our code to generate more html based on some variable*/ 
-           return <p>{i}:{fruit}</p>
+           return <p key={i}>{i}:{fruit}</p>
           }
 
           )
