@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state={//this is how you init state varaibles
       size:1,//create a size varaible to determine the size of our text
-      temp:"temp"//Another Variable!
+      temp:this.props.temp//Another Variable, this one uses the props passed into this object when it was created.
     }
   }
   componentDidMount(){
@@ -24,7 +24,7 @@ class App extends Component {
   increase=(x)=>{
     this.setState({// a setState method is inherited by all React Components and is used to change state variables
       size:this.state.size+x//set the state varaible much like the original dictionary/JSON but you can call itself with this.state.size
-    });
+    });						//setState is special because it refreshed the page when it is called.
   }
   //decrease size state variable by x
   decrease=(x)=>{
@@ -49,7 +49,7 @@ class App extends Component {
         <div className="buttons">
           {this.state.size>0?<input type="button" id="increase" onClick={()=>this.decrease(this.state.size)} value="0"/>:null /*Example of Condition statement within html*/}
           {this.state.size>0?<input type="button" id="increase" onClick={()=>this.decrease(1)} value="-"/>:null}
-          <input type="button" id="decrease" onClick={()=>this.increase(1)/*assigning a function within html*/} value="+"/>
+          <input type="button" id="decrease" onClick={()=>this.increase(1)/*assigning a function within html; onClick is a function that runs when this element is clicked or tapped on*/} value="+"/>
           <input type="button" id="decrease" onClick={()=>this.increase(5)} value="++"/>
           
         </div>
